@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+.container {
+    text-align: center; 
+}
+.task_wrapper{
+    margin: 10px;
+}
+.item-text {
+    background-color: rgb(255, 0, 98);
+}
+.strike{
+    background-color: rgb(155, 90, 115);
+    text-decoration: line-through;
+}
