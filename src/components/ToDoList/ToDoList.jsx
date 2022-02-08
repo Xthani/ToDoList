@@ -3,10 +3,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import EditForm from "../EditForm/EditForm";
 
-const ToDoList = ({ data, handleDelete, toggleTask }) => {
-    const editTask = () => {
-        return console.log(EditForm)
-    }
+
+const ToDoList = ({ data, handleDelete, toggleTask, editForm }) => {
 
     return (
         <div className="task_wrapper">
@@ -22,16 +20,19 @@ const ToDoList = ({ data, handleDelete, toggleTask }) => {
                         />
                         <EditIcon
                             className="editicon"
-                            onClick={() => editTask()}
+                            onClick={() => editForm(item)}
                         />
                         <input
                             className="checkbox"
                             type="checkbox"
                             onClick={() => toggleTask(item.id)}
                         />
+                        {item.itemEdit ? < EditForm /> : null}
                     </li>
                 ))}
             </ul>
+
+
         </div>
     )
 }

@@ -5,7 +5,7 @@ import "./style/style.css"
 
 import ToDoList from './components/ToDoList/ToDoList'
 
-import { deleteTodo, toggleTodo } from './store/actions';
+import { deleteTodo, toggleTodo, editTodo, saveTodo } from './store/actions';
 
 
 const App = () => {
@@ -19,7 +19,10 @@ const App = () => {
         dispatch(toggleTodo(id, data))
     }
 
-
+    const editForm = (item) => {
+        dispatch(editTodo(item.id, data))
+        dispatch(saveTodo(item))
+    }
 
     return (
         <div className="container_wrapper">
@@ -31,7 +34,8 @@ const App = () => {
             <ToDoList
                 data={data}
                 handleDelete={handleDelete}
-                toggleTask={toggleTask} />
+                toggleTask={toggleTask}
+                editForm={editForm} />
 
         </div>
     )

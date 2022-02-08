@@ -1,7 +1,8 @@
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, EDIT_TODO } from "./types";
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, EDIT_TODO, EDIT_TASK, SAVE_TODO } from "./types";
 
 let INIT_STATE = {
-    todosData: []
+    todosData: [],
+    editedTodo: {}
 }
 
 export const todosReduser = (state = INIT_STATE, action) => {
@@ -13,7 +14,11 @@ export const todosReduser = (state = INIT_STATE, action) => {
         case TOGGLE_TODO:
             return { ...state, todosData: action.payload }
         case EDIT_TODO:
-            return { ...state, todosData: [...state.todosData, action.payload] }
+            return { ...state, todosData: action.payload }
+        case SAVE_TODO:
+            return { ...state, editedTodo: action.payload }
+        case EDIT_TASK:
+            return { ...state, todosData: action.payload }
         default:
             return state;
     }

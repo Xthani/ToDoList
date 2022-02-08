@@ -7,7 +7,7 @@ const ToDoForm = () => {
 
     const dispatch = useDispatch()
     const handleAdd = (value) => {
-        dispatch(addTodo({ task: value, id: Date.now(), isCompleted: false }))
+        dispatch(addTodo({ task: value, id: Date.now(), isCompleted: false, itemEdit: false }))
         setUserInput("")
     }
 
@@ -27,6 +27,7 @@ const ToDoForm = () => {
         <>
             <div className="container">
                 <input
+                    // className={editTaskForm ? 'inputData' : 'editData'}
                     value={userInput}
                     type='text'
                     onChange={handleChange}
