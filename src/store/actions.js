@@ -1,7 +1,11 @@
 import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, EDIT_TODO, EDIT_TASK, SAVE_TODO } from "./types";
 
 
-export const addTodo = (newTask) => ({ type: ADD_TODO, payload: newTask });
+export const addTodo = (newTask) => {
+    return (
+        { type: ADD_TODO, payload: newTask }
+    )
+};
 export const deleteTodo = (payload, data) => {
     return (
         {
@@ -26,11 +30,10 @@ export const editTodo = (payload, data) => {
         }
     )
 }
+
 export const saveTodo = (editedTodo) => ({ type: SAVE_TODO, payload: editedTodo })
-export const editTask = (newTask) => {
-    return (
-        {
-            type: EDIT_TASK,
-            payload: newTask
-        })
-};
+
+export const editTask = (editedToDo, todos) => ({
+    type: EDIT_TASK,
+    payload: todos.map(item => item.id == editedToDo.id ? editedToDo : item)
+})

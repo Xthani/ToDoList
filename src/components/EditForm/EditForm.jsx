@@ -5,12 +5,13 @@ import { editTask } from "../../store/actions";
 
 const EditForm = () => {
 
-    const state = useSelector(state => state.todos.editedTodo)
-    const [userInput, setUserInput] = useState(state.task);
+    const { editedTodo, todosData } = useSelector(state => state.todos)
+    const [userInput, setUserInput] = useState(editedTodo.task);
 
     const dispatch = useDispatch()
-    const handleAdd = (value) => {
-        dispatch(editTask({ task: value, id: Date.now(), isCompleted: false, itemEdit: false }))
+
+    const handleEdit = (value) => {
+        dispatch(editTask({ ...editedTodo, task: value }, todosData))
         setUserInput("")
     }
 
@@ -19,25 +20,22 @@ const EditForm = () => {
         setUserInput(value)
     }
 
-    // отлавливает нажатие кнопки Enter и вызывает hendleSubmit(e)
+    // отлавливает нажатие кнопки Enter
     const handleKeyPress = ({ key }) => {
         if (key === 'Enter') {
-            handleAdd(userInput)
+            handleEdit(userInput)
         }
     }
 
     return (
-        <div>
+        <div className="edit_form_wrapper">
             <input
+                className="inputData"
                 value={userInput}
                 type="text"
                 onChange={handleChange}
-                onKeyDown={handleKeyPress}
-                placeholder="Введите изменения"
-            />
-            <button
-                onClick={() => handleAdd(userInput)}
-            >редактировать</button>
+                onKeyDown={handleKeyPress} />
+            <button onClick={() => handleEdit(userInput)}>редактировать</button>
         </div >
     )
 }

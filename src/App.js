@@ -2,11 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import ToDoForm from './components/ToDoForm/ToDoForm'
 import "./style/style.css"
-
 import ToDoList from './components/ToDoList/ToDoList'
-
-import { deleteTodo, toggleTodo, editTodo, saveTodo } from './store/actions';
-
+import { deleteTodo, toggleTodo, editTodo, saveTodo, editTask } from './store/actions';
 
 const App = () => {
     const data = useSelector(state => state.todos.todosData)
@@ -29,14 +26,13 @@ const App = () => {
             <div className='container'>
                 <h1>Tasks: {data.length} </h1>
             </div>
-
             <ToDoForm />
             <ToDoList
                 data={data}
                 handleDelete={handleDelete}
                 toggleTask={toggleTask}
-                editForm={editForm} />
-
+                editForm={editForm}
+            />
         </div>
     )
 }
