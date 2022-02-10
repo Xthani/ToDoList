@@ -5,16 +5,19 @@ import SendIcon from '@material-ui/icons/Send';
 
 const ToDoForm = () => {
     const [userInput, setUserInput] = useState('');
-
     const dispatch = useDispatch()
-    const handleAdd = (value) => {
-        dispatch(addTodo({ task: value, id: Date.now(), isCompleted: false, itemEdit: false }))
-        setUserInput("")
-    }
 
     // получаем значение вводимое в input 
     const handleChange = ({ currentTarget: { value } }) => {
         setUserInput(value)
+    }
+
+    // проверка на пустое значение или пробел, создание нового объекта
+    const handleAdd = (value) => {
+        if (value.trim() !== '') {
+            dispatch(addTodo({ task: userInput, id: Date.now(), isCompleted: false, itemEdit: false }))
+            setUserInput("")
+        }
     }
 
     // отлавливает нажатие кнопки Enter и вызывает hendleSubmit(e)
@@ -41,7 +44,6 @@ const ToDoForm = () => {
                 </div>
             </div>
         </div>
-
     )
 }
 

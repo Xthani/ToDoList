@@ -17,7 +17,7 @@ h1 {
     margin: 10px;
     text-align: center;
 }
-button{
+button {
     cursor: pointer;
 }
 
@@ -45,7 +45,6 @@ button{
 }
 
 /* ToDoList */
-
 .item-text {
     background-color: rgb(235, 29, 108);
     margin: 5px 0 5px 0 ;

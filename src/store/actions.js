@@ -1,9 +1,11 @@
 import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, EDIT_TODO, EDIT_TASK, SAVE_TODO } from "./types";
 
-
-export const addTodo = (newTask) => {
+export const addTodo = (newToDo) => {
     return (
-        { type: ADD_TODO, payload: newTask }
+        {
+            type: ADD_TODO,
+            payload: newToDo
+        }
     )
 };
 export const deleteTodo = (payload, data) => {
@@ -13,7 +15,6 @@ export const deleteTodo = (payload, data) => {
             payload: data.filter(item => item.id != payload)
         })
 };
-
 export const toggleTodo = (payload, data) => {
     return (
         {
@@ -22,7 +23,12 @@ export const toggleTodo = (payload, data) => {
         }
     )
 }
+
 export const editTodo = (payload, data) => {
+    // console.log("payload")
+    // console.log(payload)
+    // console.log("data")
+    // console.log(data)
     return (
         {
             type: EDIT_TODO,
@@ -31,7 +37,17 @@ export const editTodo = (payload, data) => {
     )
 }
 
-export const saveTodo = (editedTodo) => ({ type: SAVE_TODO, payload: editedTodo })
+export const saveTodo = (editedTodo) => {
+    // console.log("editedTodo")
+    // console.log(editedTodo)
+    return (
+        {
+            type: SAVE_TODO,
+            payload: editedTodo
+        }
+    )
+}
+
 
 export const editTask = (editedToDo, todos) => ({
     type: EDIT_TASK,

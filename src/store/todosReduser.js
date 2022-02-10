@@ -19,7 +19,6 @@ export const todosReduser = (state = INIT_STATE, action) => {
             return { ...state, editedTodo: action.payload }
         case EDIT_TASK:
             return { ...state, todosData: action.payload }
-
         default:
             return state;
     }
