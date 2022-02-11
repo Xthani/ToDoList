@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteTodo, editTask } from "../../../store/actions";
+import CheckIcon from '@material-ui/icons/Check';
 
 const EditForm = ({ item }) => {
     const { editedTodo, todosData } = useSelector(state => state.todos)
@@ -20,7 +21,7 @@ const EditForm = ({ item }) => {
         }
     }
 
-    // проверка на пустое значение или пробел, изменение или удаление
+    // Заменяет объект ToDo на новый 
     const handleEdit = (value) => {
         if (value.trim() !== '') {
             dispatch(editTask({ ...editedTodo, task: userInput }, todosData))
@@ -33,12 +34,14 @@ const EditForm = ({ item }) => {
     return (
         <div className="edit_form_wrapper">
             <input
-                className="inputData"
+                className="inputDataEdit"
                 value={userInput}
                 type="text"
                 onChange={handleChange}
                 onKeyDown={handleKeyPress} />
-            <button onClick={() => handleEdit(userInput)}>редактировать</button>
+            <CheckIcon
+                className="editiconEdit"
+                onClick={() => handleEdit(userInput)} />
         </div >
     )
 }

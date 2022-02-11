@@ -12,15 +12,15 @@ const ToDoForm = () => {
         setUserInput(value)
     }
 
-    // проверка на пустое значение или пробел, создание нового объекта
+    // добавляет новый объект ToDo
     const handleAdd = (value) => {
         if (value.trim() !== '') {
-            dispatch(addTodo({ task: userInput, id: Date.now(), isCompleted: false, itemEdit: false }))
+            dispatch(addTodo({ task: userInput, id: Date.now(), isCompleted: false, itemCheckEdit: false }))
             setUserInput("")
         }
     }
 
-    // отлавливает нажатие кнопки Enter и вызывает hendleSubmit(e)
+    // отлавливает нажатие кнопки Enter и вызывает handleAdd()
     const handleKeyPress = ({ key }) => {
         if (key === 'Enter') {
             handleAdd(userInput)

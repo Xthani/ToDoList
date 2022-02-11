@@ -11,11 +11,13 @@ const ToDoList = () => {
     const data = useSelector(state => state.todos.todosData)
     const dispatch = useDispatch()
 
-    const handleDelete = (id) => {
-        dispatch(deleteTodo(id, data))
-    }
+    // Изменяет значение isCompleted в объекте ToDo
     const toggleTask = (id) => {
         dispatch(toggleTodo(id, data))
+    }
+    // удаляет объект ToDo
+    const handleDelete = (id) => {
+        dispatch(deleteTodo(id, data))
     }
 
     return (
@@ -26,7 +28,7 @@ const ToDoList = () => {
                         <div key={item.id} className={item.isCompleted ? "item-text strike" : "item-text"}>
 
                             <div className="task_text_wrapper" >
-                                {item.itemEdit ? < EditForm item={item} /> :
+                                {item.itemCheckEdit ? < EditForm item={item} /> :
                                     <p className="task_text" >{item.task}</p>}
                             </div>
 

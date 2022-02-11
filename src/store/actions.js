@@ -1,5 +1,6 @@
-import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, EDIT_TODO, EDIT_TASK, SAVE_TODO } from "./types";
+import { ADD_TODO, DELETE_TODO, TOGGLE_TODO, CHECK_EDIT, EDIT_TASK, SAVE_TODO } from "./types";
 
+// добавляет новый объект ToDo
 export const addTodo = (newToDo) => {
     return (
         {
@@ -8,6 +9,7 @@ export const addTodo = (newToDo) => {
         }
     )
 };
+// удаляет объект ToDo
 export const deleteTodo = (payload, data) => {
     return (
         {
@@ -15,6 +17,7 @@ export const deleteTodo = (payload, data) => {
             payload: data.filter(item => item.id != payload)
         })
 };
+// Изменяет значение isCompleted в объекте ToDo
 export const toggleTodo = (payload, data) => {
     return (
         {
@@ -23,23 +26,17 @@ export const toggleTodo = (payload, data) => {
         }
     )
 }
-
-export const editTodo = (payload, data) => {
-    // console.log("payload")
-    // console.log(payload)
-    // console.log("data")
-    // console.log(data)
+// Изменяет значение itemCheckEdit в объекте ToDo
+export const сheckEdit = (payload, data) => {
     return (
         {
-            type: EDIT_TODO,
-            payload: data.map(item => item.id == payload ? { ...item, itemEdit: !item.itemEdit } : item)
+            type: CHECK_EDIT,
+            payload: data.map(item => item.id == payload ? { ...item, itemCheckEdit: !item.itemCheckEdit } : item)
         }
     )
 }
-
+// Сохраняет объект ToDo
 export const saveTodo = (editedTodo) => {
-    // console.log("editedTodo")
-    // console.log(editedTodo)
     return (
         {
             type: SAVE_TODO,
@@ -47,8 +44,7 @@ export const saveTodo = (editedTodo) => {
         }
     )
 }
-
-
+// Заменяет объект ToDo на новый 
 export const editTask = (editedToDo, todos) => ({
     type: EDIT_TASK,
     payload: todos.map(item => item.id == editedToDo.id ? editedToDo : item)
