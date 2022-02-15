@@ -24,10 +24,17 @@ const EditForm = ({ item }) => {
     // Заменяет объект ToDo на новый 
     const handleEdit = (value) => {
         if (value.trim() !== '') {
-            dispatch(editTask({ ...editedTodo, task: userInput }, todosData))
-            setUserInput("")
+            if (value == editedTodo.task) {
+                dispatch(editTask({ ...editedTodo, task: editedTodo.task }, todosData))
+            } else if (window.confirm('ПОДТВЕРДИТЕ ИЗМЕНЕНИЯ\nБыло: ' + editedTodo.task + '\nСтало: ' + value)) {
+                dispatch(editTask({ ...editedTodo, task: value }, todosData))
+            } else {
+                dispatch(editTask({ ...editedTodo, task: editedTodo.task }, todosData))
+            }
         } else {
-            dispatch(deleteTodo(item.id, todosData))
+            if (window.confirm('Удалить TASK? ' + editedTodo.task)) {
+                dispatch(deleteTodo(item.id, todosData))
+            }
         }
     }
 

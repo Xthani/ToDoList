@@ -16,8 +16,10 @@ const ToDoList = () => {
         dispatch(toggleTodo(id, data))
     }
     // удаляет объект ToDo
-    const handleDelete = (id) => {
-        dispatch(deleteTodo(id, data))
+    const handleDelete = (item) => {
+        if (window.confirm('Удалить TASK?\n' + item.task)) {
+            dispatch(deleteTodo(item.id, data))
+        }
     }
 
     return (
@@ -25,28 +27,47 @@ const ToDoList = () => {
             <div className="container">
                 <>
                     {!!data.length && data.map(item => (
-                        <div key={item.id} className={item.isCompleted ? "item-text strike" : "item-text"}>
+                        <div
+                            key={item.id}
+                            className={item.isCompleted
+                                ? "item-text strike"
+                                : "item-text"
+                            }
+                        >
 
-                            <div className="task_text_wrapper" >
-                                {item.itemCheckEdit ? < EditForm item={item} /> :
-                                    <p className="task_text" >{item.task}</p>}
+                            <div
+                                className="task_text_wrapper"
+                            >
+                                {item.itemCheckEdit
+                                    ? < EditForm item={item} />
+                                    : <p
+                                        className="task_text" >
+                                        {item.task}
+                                    </p>
+                                }
                             </div>
 
-                            <div className="icon_wrapper" >
-                                {item.isCompleted ? null :
-                                    <EditBtn item={item} />}
-                                {item.isCompleted ?
-                                    <CheckBoxIcon
+                            <div
+                                className="icon_wrapper" >
+                                {item.isCompleted
+                                    ? null
+                                    : <EditBtn item={item} />
+                                }
+                                {item.isCompleted
+                                    ? <CheckBoxIcon
                                         className="checkbox"
-                                        onClick={() => toggleTask(item.id)} /> :
-                                    <CheckBoxOutlineBlankIcon
+                                        onClick={() => toggleTask(item.id)}
+                                    />
+                                    : <CheckBoxOutlineBlankIcon
                                         className="checkbox"
-                                        onClick={() => toggleTask(item.id)} />}
+                                        onClick={() => toggleTask(item.id)}
+                                    />
+                                }
                                 <DeleteIcon
                                     className="deleteicon"
-                                    onClick={() => handleDelete(item.id)} />
+                                    onClick={() => handleDelete(item)}
+                                />
                             </div>
-
                         </div>
                     ))}
                 </>

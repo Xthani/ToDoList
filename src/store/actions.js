@@ -31,7 +31,7 @@ export const сheckEdit = (payload, data) => {
     return (
         {
             type: CHECK_EDIT,
-            payload: data.map(item => item.id == payload ? { ...item, itemCheckEdit: !item.itemCheckEdit } : item)
+            payload: data.map(item => item.id == payload ? { ...item, itemCheckEdit: !item.itemCheckEdit } : { ...item, itemCheckEdit: item.itemCheckEdit = false })
         }
     )
 }
@@ -48,4 +48,4 @@ export const saveTodo = (editedTodo) => {
 export const editTask = (editedToDo, todos) => ({
     type: EDIT_TASK,
     payload: todos.map(item => item.id == editedToDo.id ? editedToDo : item)
-})
+})  
