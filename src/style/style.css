@@ -1,4 +1,6 @@
 /* общие стили */
+
+@import-normalize;
 *{
     margin: 0;
     text-decoration: none;
